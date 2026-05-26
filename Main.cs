@@ -111,7 +111,7 @@ namespace WinFormsGUIComponentsRPG
                 // for loop to check if all goblins in all the areas are dead.
                 foreach (int value in goblinDict.Values)
                 {
-                    if (value >= 0)
+                    if (value > 0)
                     {
                         allGoblinsKilled = false;
                         break;
