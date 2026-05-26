@@ -23,12 +23,20 @@ namespace WinFormsGUIComponentsRPG
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
         }
-
         private async void UpdateStats()
         {
             // This updates stuff on our gui for us
-            statsLabel.Text = "Health: " + playerHealth.ToString() + " | Gold: " + playerGold.ToString();
 
+            //await Task.Run(() =>
+            //{
+            //    Invoke(() =>
+            //    {
+            //        // This updates stuff on our gui for us
+            //        statsLabel.Text = "Health: " + playerHealth.ToString() + " | Gold: " + playerGold.ToString();
+            //    });
+
+            //});
+            statsLabel.Text = "Health: " + playerHealth.ToString() + " | Gold: " + playerGold.ToString();
             if (playerHealth >= 0)
             {
                 // The progress bar was looking weird so I tried this update thread istead of UI thread method, which worked out well.
@@ -109,6 +117,8 @@ namespace WinFormsGUIComponentsRPG
                         break;
                     }
                 }
+
+                UpdateStats();
                 if (allGoblinsKilled)
                 {
                     lblStory.Text = "You have killed all the Forest Goblins in all the areas in the entire forest and have won the game.";
@@ -141,6 +151,7 @@ namespace WinFormsGUIComponentsRPG
 
                 // refresh the display of our user
                 UpdateStats();
+                
 
                 if (playerHealth <= 0)
                 {
