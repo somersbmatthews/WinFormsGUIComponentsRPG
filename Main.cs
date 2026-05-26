@@ -6,16 +6,19 @@ namespace WinFormsGUIComponentsRPG
 {
     public partial class statsDisplay : Form
     {
-        // Players health
+        // player's health
         int playerHealth = 100;
 
+        // player's gold
         int playerGold = 0;
 
+        // A Dictionary to hold the area as a (string) and the number of goblins alive (int) in that area.
         Dictionary<String, int> goblinDict = new Dictionary<String, int>();
         public statsDisplay()
         {
             InitializeComponent();
 
+            // Some WinForms settings to help keep the components where I put them in Design.
             this.AutoScaleMode = AutoScaleMode.None;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -28,18 +31,13 @@ namespace WinFormsGUIComponentsRPG
 
             if (playerHealth >= 0)
             {
+                // The progress bar was looking weird so I tried this update thread istead of UI thread method, which worked out well.
                 await Task.Run(() =>
                 {
                     Invoke(() =>
                     {
-                        progressBar.Value = playerHealth;
-                        if (playerHealth <= 70)
-                        {
-                            progressBar.ForeColor = Color.Yellow;
-                        } else if (playerHealth <= 30)
-                        {
-                            progressBar.ForeColor = Color.Red;
-                        }
+                        // sets the progress bar value equal to the player health
+                        progressBar.Value = playerHealth;              
                     });
 
                 });
@@ -82,23 +80,30 @@ namespace WinFormsGUIComponentsRPG
 
             //MessageBox.Show(comboLocations.SelectedItem.ToString() + " " + goblinDict[comboLocations.SelectedItem.ToString()].ToString());
 
-            // now let check if our random number
+            // now let's check if our random number is greater than 4 and if there are any goblins in the area.
             if (eventRoll > 4 && goblinDict[comboLocations.SelectedItem.ToString()] >= 1)
             {
+                // Display's message to the user in the Story label
                 lblStory.Text = "You struck and killed a Forest Goblin. You take his 20 gold coins.";
 
+                // Adds gold to the players gold
                 playerGold = playerGold + 20;
 
+                // Sets image as player striking a goblin to the display panel
                 displayPanel.BackgroundImage = Properties.Resources.StrikingForestGoblin;
+                // Makes sure the image is set to stretch
                 displayPanel.BackgroundImageLayout = ImageLayout.Stretch;
 
+                // Reduces goblins in this area by one
                 goblinDict[comboLocations.SelectedItem.ToString()]--;
 
+                // Initializes bool if all goblins in this area are killed
                 bool allGoblinsKilled = true;
 
+                // for loop to check if all goblins in all the areas are dead.
                 foreach (int value in goblinDict.Values)
                 {
-                    if (value != 0)
+                    if (value >= 0)
                     {
                         allGoblinsKilled = false;
                         break;
@@ -106,7 +111,7 @@ namespace WinFormsGUIComponentsRPG
                 }
                 if (allGoblinsKilled)
                 {
-                    lblStory.Text = "You have killed all Forest Goblins in all the areas in the entire forest and have won the game.";
+                    lblStory.Text = "You have killed all the Forest Goblins in all the areas in the entire forest and have won the game.";
 
                     MessageBox.Show("You have killed all the Forest Goblins in all the areas in the entire forest and have won the game.");
 
@@ -114,12 +119,14 @@ namespace WinFormsGUIComponentsRPG
                     Application.Exit();
 
                 }
+                // checks to see if all goblins are killed in only the area the player is in.
                 else if (goblinDict[comboLocations.SelectedItem.ToString()] < 1)
                 {
                     lblStory.Text = "You have killed all Forest Goblins in this area. Please select another area to kill the rest.";
          
                 }
             }
+            // checks if our random number is less than or equal to 4 and if there are any goblins in the area.
             else if (eventRoll <= 4 && goblinDict[comboLocations.SelectedItem.ToString()] >= 1)
             {
                 // something negative happens to our user
@@ -127,7 +134,9 @@ namespace WinFormsGUIComponentsRPG
                 // Now it costs our user some of their health
                 playerHealth = playerHealth - 15;
 
+                // Sets image as player striking a goblin to the display panel
                 displayPanel.BackgroundImage = Properties.Resources.GoblinStrikingPlayer;
+                // Makes sure the image is set to stretch
                 displayPanel.BackgroundImageLayout = ImageLayout.Stretch;
 
                 // refresh the display of our user
@@ -145,9 +154,7 @@ namespace WinFormsGUIComponentsRPG
         }
 
         private void comboLocations_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // set or reset number of enemyGoblins
-            
+        {   
             // Let's check and see what value is now selected
             if (comboLocations.SelectedItem.ToString() == "Dark Wood")
             {
