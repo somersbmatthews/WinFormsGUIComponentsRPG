@@ -1,6 +1,6 @@
 ﻿namespace WinFormsGUIComponentsRPG
 {
-    partial class Main
+    partial class statsDisplay
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,44 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            panel1 = new Panel();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
+            lblStory = new Label();
+            displayPanel = new Panel();
+            comboLocations = new ComboBox();
+            statsLabel = new TextBox();
             button1 = new Button();
+            progressBar = new ProgressBar();
             SuspendLayout();
             // 
-            // label1
+            // lblStory
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(1012, 163);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 32);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            lblStory.AutoSize = true;
+            lblStory.Location = new Point(347, 130);
+            lblStory.Name = "lblStory";
+            lblStory.Size = new Size(94, 32);
+            lblStory.TabIndex = 0;
+            lblStory.Text = "lblStory";
             // 
-            // panel1
+            // displayPanel
             // 
-            panel1.BackColor = Color.Black;
-            panel1.Location = new Point(193, 213);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(601, 455);
-            panel1.TabIndex = 1;
+            displayPanel.BackColor = Color.Black;
+            displayPanel.Location = new Point(193, 213);
+            displayPanel.Name = "displayPanel";
+            displayPanel.Size = new Size(601, 455);
+            displayPanel.TabIndex = 1;
             // 
-            // comboBox1
+            // comboLocations
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(1316, 30);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(242, 40);
-            comboBox1.TabIndex = 2;
+            comboLocations.FormattingEnabled = true;
+            comboLocations.Location = new Point(1237, 33);
+            comboLocations.Name = "comboLocations";
+            comboLocations.Size = new Size(242, 40);
+            comboLocations.TabIndex = 2;
+            comboLocations.SelectedIndexChanged += comboLocations_SelectedIndexChanged;
             // 
-            // textBox1
+            // statsLabel
             // 
-            textBox1.Location = new Point(104, 68);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 39);
-            textBox1.TabIndex = 4;
+            statsLabel.Location = new Point(104, 68);
+            statsLabel.Name = "statsLabel";
+            statsLabel.Size = new Size(200, 39);
+            statsLabel.TabIndex = 4;
+            statsLabel.TextChanged += textBox1_TextChanged;
             // 
             // button1
             // 
@@ -73,21 +76,29 @@
             button1.Name = "button1";
             button1.Size = new Size(150, 46);
             button1.TabIndex = 5;
-            button1.Text = "button1";
+            button1.Text = "Explore";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // Main
+            // progressBar
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
-            AutoScaleMode = AutoScaleMode.Font;
+            progressBar.Location = new Point(193, 703);
+            progressBar.Name = "progressBar";
+            progressBar.Size = new Size(1063, 109);
+            progressBar.TabIndex = 6;
+            // 
+            // statsDisplay
+            // 
+            AutoScaleMode = AutoScaleMode.None;
             BackgroundImage = Properties.Resources.DarkWood;
             ClientSize = new Size(1665, 859);
+            Controls.Add(progressBar);
             Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox1);
-            Controls.Add(panel1);
-            Controls.Add(label1);
-            Name = "Main";
+            Controls.Add(statsLabel);
+            Controls.Add(comboLocations);
+            Controls.Add(displayPanel);
+            Controls.Add(lblStory);
+            Name = "statsDisplay";
             Text = "WinForms GUI Components Dark Woods RPG";
             Load += Main_Load;
             ResumeLayout(false);
@@ -96,10 +107,11 @@
 
         #endregion
 
-        private Label label1;
-        private Panel panel1;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
+        private Label lblStory;
+        private Panel displayPanel;
+        private ComboBox comboLocations;
+        private TextBox statsLabel;
         private Button button1;
+        private ProgressBar progressBar;
     }
 }

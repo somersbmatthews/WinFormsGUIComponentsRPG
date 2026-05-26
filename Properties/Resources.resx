@@ -121,4 +121,13 @@
   <data name="DarkWood" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DarkWood.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DeadTree" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeadTree.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GoblinStrikingPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GoblinStrikingPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StrikingForestGoblin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StrikingForestGoblin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
